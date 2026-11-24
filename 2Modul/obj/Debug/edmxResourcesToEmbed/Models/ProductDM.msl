@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ASKruchProductExcelDBModelContainer" CdmEntityContainer="ASKruchProductExcelDBEntities1">
+    <EntitySetMapping Name="MaterialDefects">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.MaterialDefects">
+        <MappingFragment StoreEntitySet="MaterialDefects">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MaterialType" ColumnName="MaterialType" />
+          <ScalarProperty Name="DefectPercentage" ColumnName="DefectPercentage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materials">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.Materials">
+        <MappingFragment StoreEntitySet="Materials">
+          <ScalarProperty Name="IDMaterial" ColumnName="IDMaterial" />
+          <ScalarProperty Name="IDMaterialType" ColumnName="IDMaterialType" />
+          <ScalarProperty Name="IDSupplier" ColumnName="IDSupplier" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="QuantityInPack" ColumnName="QuantityInPack" />
+          <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="StockQuantity" ColumnName="StockQuantity" />
+          <ScalarProperty Name="MinQuantity" ColumnName="MinQuantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartnerHistory">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.PartnerHistory">
+        <MappingFragment StoreEntitySet="PartnerHistory">
+          <ScalarProperty Name="IDHistory" ColumnName="IDHistory" />
+          <ScalarProperty Name="IDPartner" ColumnName="IDPartner" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="OldRating" ColumnName="OldRating" />
+          <ScalarProperty Name="NewRating" ColumnName="NewRating" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartnerPoints">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.PartnerPoints">
+        <MappingFragment StoreEntitySet="PartnerPoints">
+          <ScalarProperty Name="IDPoint" ColumnName="IDPoint" />
+          <ScalarProperty Name="IDPartner" ColumnName="IDPartner" />
+          <ScalarProperty Name="PointAddress" ColumnName="PointAddress" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partners">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.Partners">
+        <MappingFragment StoreEntitySet="Partners">
+          <ScalarProperty Name="IDPartner" ColumnName="IDPartner" />
+          <ScalarProperty Name="IDType" ColumnName="IDType" />
+          <ScalarProperty Name="PartnerName" ColumnName="PartnerName" />
+          <ScalarProperty Name="DirectorName" ColumnName="DirectorName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="LegalAddress" ColumnName="LegalAddress" />
+          <ScalarProperty Name="INN" ColumnName="INN" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartnerSales">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.PartnerSales">
+        <MappingFragment StoreEntitySet="PartnerSales">
+          <ScalarProperty Name="IDSale" ColumnName="IDSale" />
+          <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
+          <ScalarProperty Name="IDPartner" ColumnName="IDPartner" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartnerTypes">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.PartnerTypes">
+        <MappingFragment StoreEntitySet="PartnerTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductMaterials">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.ProductMaterials">
+        <MappingFragment StoreEntitySet="ProductMaterials">
+          <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
+          <ScalarProperty Name="IDMaterial" ColumnName="IDMaterial" />
+          <ScalarProperty Name="CountRequired" ColumnName="CountRequired" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
+          <ScalarProperty Name="IDType" ColumnName="IDType" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Article" ColumnName="Article" />
+          <ScalarProperty Name="MinPriceToPartner" ColumnName="MinPriceToPartner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductTypes">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.ProductTypes">
+        <MappingFragment StoreEntitySet="ProductTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.Suppliers">
+        <MappingFragment StoreEntitySet="Suppliers">
+          <ScalarProperty Name="IDSupplier" ColumnName="IDSupplier" />
+          <ScalarProperty Name="SupplierType" ColumnName="SupplierType" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="INN" ColumnName="INN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ASKruchProductExcelDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

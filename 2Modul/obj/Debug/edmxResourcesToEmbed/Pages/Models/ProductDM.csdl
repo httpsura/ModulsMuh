@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ASKruchProductExcelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MaterialDefects">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="MaterialType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DefectPercentage" Type="Decimal" Precision="5" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Materials" Relationship="Self.FK_Materials_MaterialDefects" FromRole="MaterialDefects" ToRole="Materials" />
+  </EntityType>
+  <EntityType Name="Materials">
+    <Key>
+      <PropertyRef Name="IDMaterial" />
+    </Key>
+    <Property Name="IDMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDMaterialType" Type="Int32" Nullable="false" />
+    <Property Name="IDSupplier" Type="Int32" />
+    <Property Name="MaterialName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuantityInPack" Type="Int32" />
+    <Property Name="UnitOfMeasure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="StockQuantity" Type="Double" />
+    <Property Name="MinQuantity" Type="Double" />
+    <NavigationProperty Name="MaterialDefects" Relationship="Self.FK_Materials_MaterialDefects" FromRole="Materials" ToRole="MaterialDefects" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.FK_Materials_Suppliers" FromRole="Materials" ToRole="Suppliers" />
+    <NavigationProperty Name="ProductMaterials" Relationship="Self.FK_ProductMaterials_Materials" FromRole="Materials" ToRole="ProductMaterials" />
+  </EntityType>
+  <EntityType Name="PartnerHistory">
+    <Key>
+      <PropertyRef Name="IDHistory" />
+    </Key>
+    <Property Name="IDHistory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPartner" Type="Int32" Nullable="false" />
+    <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="OldRating" Type="Int32" />
+    <Property Name="NewRating" Type="Int32" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK_PartnerHistory_Partners" FromRole="PartnerHistory" ToRole="Partners" />
+  </EntityType>
+  <EntityType Name="PartnerPoints">
+    <Key>
+      <PropertyRef Name="IDPoint" />
+    </Key>
+    <Property Name="IDPoint" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPartner" Type="Int32" Nullable="false" />
+    <Property Name="PointAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK_PartnerPoints_Partners" FromRole="PartnerPoints" ToRole="Partners" />
+  </EntityType>
+  <EntityType Name="Partners">
+    <Key>
+      <PropertyRef Name="IDPartner" />
+    </Key>
+    <Property Name="IDPartner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDType" Type="Int32" Nullable="false" />
+    <Property Name="PartnerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DirectorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LegalAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="INN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Rating" Type="Int32" />
+    <NavigationProperty Name="PartnerHistory" Relationship="Self.FK_PartnerHistory_Partners" FromRole="Partners" ToRole="PartnerHistory" />
+    <NavigationProperty Name="PartnerPoints" Relationship="Self.FK_PartnerPoints_Partners" FromRole="Partners" ToRole="PartnerPoints" />
+    <NavigationProperty Name="PartnerTypes" Relationship="Self.FK_Partners_PartnerTypes" FromRole="Partners" ToRole="PartnerTypes" />
+    <NavigationProperty Name="PartnerSales" Relationship="Self.FK_PartnerSales_Partners" FromRole="Partners" ToRole="PartnerSales" />
+  </EntityType>
+  <EntityType Name="PartnerSales">
+    <Key>
+      <PropertyRef Name="IDSale" />
+    </Key>
+    <Property Name="IDSale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDProduct" Type="Int32" Nullable="false" />
+    <Property Name="IDPartner" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK_PartnerSales_Partners" FromRole="PartnerSales" ToRole="Partners" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_PartnerSales_Products" FromRole="PartnerSales" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="PartnerTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK_Partners_PartnerTypes" FromRole="PartnerTypes" ToRole="Partners" />
+  </EntityType>
+  <EntityType Name="ProductMaterials">
+    <Key>
+      <PropertyRef Name="IDProduct" />
+    </Key>
+    <Property Name="IDProduct" Type="Int32" Nullable="false" />
+    <Property Name="IDMaterial" Type="Int32" Nullable="false" />
+    <Property Name="CountRequired" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Materials" Relationship="Self.FK_ProductMaterials_Materials" FromRole="ProductMaterials" ToRole="Materials" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductMaterials_Products" FromRole="ProductMaterials" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="IDProduct" />
+    </Key>
+    <Property Name="IDProduct" Type="Int32" Nullable="false" />
+    <Property Name="IDType" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Article" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MinPriceToPartner" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+    <NavigationProperty Name="PartnerSales" Relationship="Self.FK_PartnerSales_Products" FromRole="Products" ToRole="PartnerSales" />
+    <NavigationProperty Name="ProductMaterials" Relationship="Self.FK_ProductMaterials_Products" FromRole="Products" ToRole="ProductMaterials" />
+    <NavigationProperty Name="ProductTypes" Relationship="Self.FK_Products_ProductTypes" FromRole="Products" ToRole="ProductTypes" />
+  </EntityType>
+  <EntityType Name="ProductTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Coefficient" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductTypes" FromRole="ProductTypes" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Suppliers">
+    <Key>
+      <PropertyRef Name="IDSupplier" />
+    </Key>
+    <Property Name="IDSupplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SupplierName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="INN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Materials" Relationship="Self.FK_Materials_Suppliers" FromRole="Suppliers" ToRole="Materials" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Materials_MaterialDefects">
+    <End Role="MaterialDefects" Type="Self.MaterialDefects" Multiplicity="1" />
+    <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaterialDefects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Materials">
+        <PropertyRef Name="IDMaterialType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Materials_Suppliers">
+    <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+    <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Suppliers">
+        <PropertyRef Name="IDSupplier" />
+      </Principal>
+      <Dependent Role="Materials">
+        <PropertyRef Name="IDSupplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaterials_Materials">
+    <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+    <End Role="ProductMaterials" Type="Self.ProductMaterials" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materials">
+        <PropertyRef Name="IDMaterial" />
+      </Principal>
+      <Dependent Role="ProductMaterials">
+        <PropertyRef Name="IDMaterial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnerHistory_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="1" />
+    <End Role="PartnerHistory" Type="Self.PartnerHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="IDPartner" />
+      </Principal>
+      <Dependent Role="PartnerHistory">
+        <PropertyRef Name="IDPartner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnerPoints_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="1" />
+    <End Role="PartnerPoints" Type="Self.PartnerPoints" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="IDPartner" />
+      </Principal>
+      <Dependent Role="PartnerPoints">
+        <PropertyRef Name="IDPartner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_PartnerTypes">
+    <End Role="PartnerTypes" Type="Self.PartnerTypes" Multiplicity="1" />
+    <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Partners">
+        <PropertyRef Name="IDType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnerSales_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="1" />
+    <End Role="PartnerSales" Type="Self.PartnerSales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="IDPartner" />
+      </Principal>
+      <Dependent Role="PartnerSales">
+        <PropertyRef Name="IDPartner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnerSales_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="PartnerSales" Type="Self.PartnerSales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IDProduct" />
+      </Principal>
+      <Dependent Role="PartnerSales">
+        <PropertyRef Name="IDProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaterials_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductMaterials" Type="Self.ProductMaterials" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IDProduct" />
+      </Principal>
+      <Dependent Role="ProductMaterials">
+        <PropertyRef Name="IDProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductTypes">
+    <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="IDType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ASKruchProductExcelDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MaterialDefects" EntityType="Self.MaterialDefects" />
+    <EntitySet Name="Materials" EntityType="Self.Materials" />
+    <EntitySet Name="PartnerHistory" EntityType="Self.PartnerHistory" />
+    <EntitySet Name="PartnerPoints" EntityType="Self.PartnerPoints" />
+    <EntitySet Name="Partners" EntityType="Self.Partners" />
+    <EntitySet Name="PartnerSales" EntityType="Self.PartnerSales" />
+    <EntitySet Name="PartnerTypes" EntityType="Self.PartnerTypes" />
+    <EntitySet Name="ProductMaterials" EntityType="Self.ProductMaterials" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" />
+    <EntitySet Name="Suppliers" EntityType="Self.Suppliers" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Materials_MaterialDefects" Association="Self.FK_Materials_MaterialDefects">
+      <End Role="MaterialDefects" EntitySet="MaterialDefects" />
+      <End Role="Materials" EntitySet="Materials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Materials_Suppliers" Association="Self.FK_Materials_Suppliers">
+      <End Role="Suppliers" EntitySet="Suppliers" />
+      <End Role="Materials" EntitySet="Materials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaterials_Materials" Association="Self.FK_ProductMaterials_Materials">
+      <End Role="Materials" EntitySet="Materials" />
+      <End Role="ProductMaterials" EntitySet="ProductMaterials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnerHistory_Partners" Association="Self.FK_PartnerHistory_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="PartnerHistory" EntitySet="PartnerHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnerPoints_Partners" Association="Self.FK_PartnerPoints_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="PartnerPoints" EntitySet="PartnerPoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_PartnerTypes" Association="Self.FK_Partners_PartnerTypes">
+      <End Role="PartnerTypes" EntitySet="PartnerTypes" />
+      <End Role="Partners" EntitySet="Partners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnerSales_Partners" Association="Self.FK_PartnerSales_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="PartnerSales" EntitySet="PartnerSales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnerSales_Products" Association="Self.FK_PartnerSales_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="PartnerSales" EntitySet="PartnerSales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaterials_Products" Association="Self.FK_ProductMaterials_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductMaterials" EntitySet="ProductMaterials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductTypes" Association="Self.FK_Products_ProductTypes">
+      <End Role="ProductTypes" EntitySet="ProductTypes" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
